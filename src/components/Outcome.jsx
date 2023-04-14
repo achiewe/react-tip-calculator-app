@@ -1,7 +1,18 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-function Outcome() {
+function Outcome({
+  setinputbill,
+  inputbill,
+  setinputpeople,
+  inputpeople,
+  inputpercent,
+  setinputpercent,
+  settip,
+  settotal,
+  total,
+  tip,
+}) {
   return (
     <OutcomeContainer>
       <OutcomeInside>
@@ -10,14 +21,14 @@ function Outcome() {
             <h4>
               Tip Amount <br /> <span> / person</span>
             </h4>
-            <h2> $0.00</h2>
+            <h2> ${tip} </h2>
           </TipAmountDiv>
 
           <TipAmountDiv>
             <h4>
               Total <br /> <span> / person</span>
             </h4>
-            <h2> $0.00</h2>
+            <h2> ${total}</h2>
           </TipAmountDiv>
         </TipTotalDiv>
         <button> RESET </button>
@@ -31,6 +42,9 @@ const OutcomeContainer = styled.div`
   padding: 0px 24px 32px 24px;
   display: flex;
   flex-direction: column;
+  @media (min-width: 1024px) {
+    padding: 32px 32px 32px 0px;
+  }
 `;
 
 const OutcomeInside = styled.div`
@@ -41,18 +55,30 @@ const OutcomeInside = styled.div`
   display: flex;
   flex-direction: column;
   gap: 35px;
+  @media (min-width: 1024px) {
+    padding: 40px;
+    gap: 134px;
+    max-width: 413px;
+  }
   button {
     width: 100%;
     height: 48px;
     border-radius: 5px;
     border: none;
-    background-color: #26c2ae;
+    background-color: #0d686d;
     font-size: 20px;
     font-weight: 700;
     line-height: 30px;
     letter-spacing: 0px;
     text-align: center;
     color: #00474b;
+    cursor: pointer;
+    :hover {
+      background-color: #9fe8df;
+    }
+    @media (min-width: 1024px) {
+      width: 333px;
+    }
   }
 `;
 
@@ -61,6 +87,9 @@ const TipTotalDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: 21px;
+  @media (min-width: 1024px) {
+    gap: 25px;
+  }
 `;
 
 const TipAmountDiv = styled.div`
@@ -94,6 +123,13 @@ const TipAmountDiv = styled.div`
     letter-spacing: -0.6666666865348816px;
     text-align: right;
     color: #26c2ae;
+    @media (min-width: 1024px) {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 71px;
+      letter-spacing: -1px;
+      text-align: right;
+    }
   }
 `;
 

@@ -1,31 +1,74 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DollarImage from "/public/icon-dollar.svg";
 import PersonImage from "/public/icon-person.svg";
 
-function Compute() {
+function Compute({
+  setinputbill,
+  inputbill,
+  setinputpeople,
+  inputpeople,
+  inputpercent,
+  setinputpercent,
+  settip,
+  settotal,
+  total,
+  tip,
+}) {
+  useEffect(() => {
+    if (inputpeople !== 0 && inputpeople !== "") {
+      const percentCompute = (inputbill * inputpercent) / 100;
+      settip(percentCompute / inputpeople);
+      settotal((percentCompute + Number(inputbill)) / inputpeople);
+    }
+  }, [inputbill, inputpeople, inputpercent]);
+
   return (
     <ComputeContaier>
       <ComputeDivInside>
         <InputDiv>
           <h3> Bill</h3>
-          <input placeholder="0.00" />
+          <input
+            onChange={(e) => setinputbill(e.target.value)}
+            id="bill"
+            placeholder="0"
+            type="number"
+          />
         </InputDiv>
         <SelectTipDiv>
           <h3> Select Tip %</h3>
 
           <PercentButtonsDiv>
-            <PercentButtons>5%</PercentButtons>
-            <PercentButtons>10%</PercentButtons>
-            <PercentButtons>15%</PercentButtons>
-            <PercentButtons>25%</PercentButtons>
-            <PercentButtons>50%</PercentButtons>
-            <input placeholder="Custom" />
+            <PercentButtons onClick={() => setinputpercent("5")}>
+              5%
+            </PercentButtons>
+            <PercentButtons onClick={() => setinputpercent("10")}>
+              10%
+            </PercentButtons>
+            <PercentButtons onClick={() => setinputpercent("15")}>
+              15%
+            </PercentButtons>
+            <PercentButtons onClick={() => setinputpercent("25")}>
+              25%
+            </PercentButtons>
+            <PercentButtons onClick={() => setinputpercent("50")}>
+              50%
+            </PercentButtons>
+            <input
+              id="custom"
+              placeholder="Custom"
+              onChange={(e) => setinputpercent(e.target.value)}
+            />
           </PercentButtonsDiv>
         </SelectTipDiv>
         <InputDiv2>
           <h3> Number of People</h3>
-          <input placeholder="0.00" />
+          <input
+            id="numberPeople"
+            placeholder="0"
+            type="number"
+            onChange={(x) => setinputpeople(x.target.value)}
+          />
         </InputDiv2>
       </ComputeDivInside>
     </ComputeContaier>
@@ -39,6 +82,9 @@ const ComputeContaier = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  @media (min-width: 1024px) {
+    padding: 45px;
+  }
   h3 {
     font-family: "Space Mono", monospace;
     font-size: 16px;
@@ -56,6 +102,17 @@ const ComputeContaier = styled.div`
     border: none;
     border-radius: 5px;
     padding: 17px;
+    color: #00474b;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0px;
+    text-align: right;
+    cursor: pointer;
+    :hover {
+      border: 2px solid #26c2ae;
+    }
+
     ::placeholder {
       font-size: 24px;
       font-weight: 700;
@@ -72,6 +129,9 @@ const ComputeDivInside = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  @media (min-width: 1024px) {
+    gap: 42px;
+  }
 `;
 
 const InputDiv = styled.div`
@@ -100,7 +160,9 @@ const PercentButtonsDiv = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 16px;
-
+  @media (min-width: 1024px) {
+    gap: 14px;
+  }
   input {
     height: 48px;
     width: 147.81369018554688px;
@@ -108,6 +170,12 @@ const PercentButtonsDiv = styled.div`
     top: 0px;
     border-radius: 5px;
     background-color: #f3f9fa;
+    @media (min-width: 1024px) {
+      width: 118px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     ::placeholder {
       font-size: 24px;
       font-weight: 700;
@@ -115,6 +183,9 @@ const PercentButtonsDiv = styled.div`
       letter-spacing: 0px;
       text-align: right;
       color: #547878;
+      @media (min-width: 1024px) {
+        font-size: 23px;
+      }
     }
   }
 `;
@@ -134,6 +205,17 @@ const PercentButtons = styled.button`
   text-align: center;
   color: #ffffff;
   cursor: pointer;
+  :hover {
+    background-color: #9fe8df;
+    color: #00474b;
+  }
+  :focus {
+    background-color: #26c2ae;
+    color: #00474b;
+  }
+  @media (min-width: 1024px) {
+    width: 117px;
+  }
 `;
 
 const InputDiv2 = styled.div`
