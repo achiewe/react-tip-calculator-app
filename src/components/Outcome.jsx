@@ -13,6 +13,14 @@ function Outcome({
   total,
   tip,
 }) {
+  function ResetButton() {
+    setinputbill("0");
+    setinputpeople("");
+    setinputpercent("");
+    settotal("0.00");
+    settip("0.00");
+    console.log("ere");
+  }
   return (
     <OutcomeContainer>
       <OutcomeInside>
@@ -31,7 +39,7 @@ function Outcome({
             <h2> ${total}</h2>
           </TipAmountDiv>
         </TipTotalDiv>
-        <button> RESET </button>
+        <button onClick={ResetButton}> RESET </button>
       </OutcomeInside>
     </OutcomeContainer>
   );

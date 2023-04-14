@@ -15,6 +15,7 @@ function Compute({
   total,
   tip,
 }) {
+  // const [error, seterror] = useState(false);
   useEffect(() => {
     if (inputpeople !== 0 && inputpeople !== "") {
       const percentCompute = (inputbill * inputpercent) / 100;
@@ -62,12 +63,20 @@ function Compute({
           </PercentButtonsDiv>
         </SelectTipDiv>
         <InputDiv2>
-          <h3> Number of People</h3>
-          <input
+          <h3>
+            Number of People
+            <ErrorP set={inputpeople}>can't be zero </ErrorP>
+          </h3>
+          <StyledInput
             id="numberPeople"
             placeholder="0"
             type="number"
-            onChange={(x) => setinputpeople(x.target.value)}
+            onChange={(x) => {
+              setinputpeople(x.target.value);
+
+              // inputpeople === 0 ? seterror(true) : seterror(false);
+            }}
+            inputpeople={inputpeople}
           />
         </InputDiv2>
       </ComputeDivInside>
@@ -110,7 +119,7 @@ const ComputeContaier = styled.div`
     text-align: right;
     cursor: pointer;
     :hover {
-      border: 2px solid #26c2ae;
+      outline: 2px solid #26c2ae;
     }
 
     ::placeholder {
@@ -224,11 +233,23 @@ const InputDiv2 = styled.div`
   flex-direction: column;
   gap: 6px;
 
-  input {
-    background-image: url(${PersonImage});
-    background-repeat: no-repeat;
-    background-position: 19px 14px;
+  h3 {
+    display: flex;
+    justify-content: space-between;
   }
+`;
+
+const StyledInput = styled.input`
+  background-image: url(${PersonImage});
+  background-repeat: no-repeat;
+  background-position: 19px 14px;
+  outline: ${(props) => (props.inputpeople === "0" ? "2px solid red" : "none")};
+`;
+
+const ErrorP = styled.span`
+  color: red;
+  font-size: 15px;
+  display: ${(props) => (props.inputpeople === "0" ? "block" : "none")};
 `;
 
 export default Compute;
