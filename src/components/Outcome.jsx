@@ -32,10 +32,7 @@ function Outcome({
               Tip Amount <br /> <span> / person</span>
             </h4>
             <h2>
-              {" "}
-              ${isNaN(tip) || !isFinite(tip)
-                ? "0.00"
-                : Number(tip).toFixed(2)}{" "}
+              ${isNaN(tip) || !isFinite(tip) ? "0.00" : Number(tip).toFixed(2)}
             </h2>
           </TipAmountDiv>
 
