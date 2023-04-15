@@ -29,7 +29,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [https://react-tip-calculator-2vy69zxks-achiewe.vercel.app/]
+- Live Site URL: [https://react-tip-calculator-ok7y5jh37-achiewe.vercel.app/]
 
 ## My process
 
@@ -43,6 +43,8 @@ Users should be able to:
 - [Styled Components](https://styled-components.com/) - For styles
 
 ### What I learned
+
+in this project second time i used styled component and react, it will give me a good understanding of how to use react components to create a user interface. secondly, i learnt how to handle user input and use that input to update the state of my application. it involve taking in the bill amount, the tip percentage, and the number of people sharing the bill, and then calculating the total amount owed by each person.
 
 ## Author
 
