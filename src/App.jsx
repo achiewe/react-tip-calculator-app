@@ -11,6 +11,7 @@ function App() {
   const [inputpercent, setinputpercent] = useState("");
   const [tip, settip] = useState("0.00");
   const [total, settotal] = useState("0.00");
+  const [buttonColor, setbuttonColor] = useState("#0d686d");
   return (
     <Body>
       <GlobalStyles />
@@ -27,8 +28,7 @@ function App() {
           inputpercent={inputpercent}
           settip={settip}
           settotal={settotal}
-          total={total}
-          tip={tip}
+          setbuttonColor={setbuttonColor}
         />
         <Outcome
           inputbill={inputbill}
@@ -41,6 +41,8 @@ function App() {
           settotal={settotal}
           total={total}
           tip={tip}
+          buttonColor={buttonColor}
+          setbuttonColor={setbuttonColor}
         />
       </Main>
     </Body>

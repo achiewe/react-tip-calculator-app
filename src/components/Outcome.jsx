@@ -12,14 +12,16 @@ function Outcome({
   settotal,
   total,
   tip,
+  buttonColor,
+  setbuttonColor,
 }) {
-  function ResetButton() {
-    setinputbill("0");
+  function resetButton() {
+    setinputbill("");
     setinputpeople("");
     setinputpercent("");
     settotal("0.00");
     settip("0.00");
-    console.log("ere");
+    setbuttonColor("#0d686d");
   }
   return (
     <OutcomeContainer>
@@ -29,17 +31,29 @@ function Outcome({
             <h4>
               Tip Amount <br /> <span> / person</span>
             </h4>
-            <h2> ${tip} </h2>
+            <h2>
+              {" "}
+              ${isNaN(tip) || !isFinite(tip)
+                ? "0.00"
+                : Number(tip).toFixed(2)}{" "}
+            </h2>
           </TipAmountDiv>
 
           <TipAmountDiv>
             <h4>
               Total <br /> <span> / person</span>
             </h4>
-            <h2> ${total}</h2>
+            <h2>
+              $
+              {isNaN(total) || !isFinite(total)
+                ? "0.00"
+                : Number(total).toFixed(2)}
+            </h2>
           </TipAmountDiv>
         </TipTotalDiv>
-        <button onClick={ResetButton}> RESET </button>
+        <ResetButton buttonColor={buttonColor} onClick={resetButton}>
+          RESET
+        </ResetButton>
       </OutcomeInside>
     </OutcomeContainer>
   );
@@ -67,26 +81,6 @@ const OutcomeInside = styled.div`
     padding: 40px;
     gap: 134px;
     max-width: 413px;
-  }
-  button {
-    width: 100%;
-    height: 48px;
-    border-radius: 5px;
-    border: none;
-    background-color: #0d686d;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 30px;
-    letter-spacing: 0px;
-    text-align: center;
-    color: #00474b;
-    cursor: pointer;
-    :hover {
-      background-color: #9fe8df;
-    }
-    @media (min-width: 1024px) {
-      width: 333px;
-    }
   }
 `;
 
@@ -138,6 +132,27 @@ const TipAmountDiv = styled.div`
       letter-spacing: -1px;
       text-align: right;
     }
+  }
+`;
+
+const ResetButton = styled.button`
+  width: 100%;
+  height: 48px;
+  border-radius: 5px;
+  border: none;
+  background-color: ${(props) => props.buttonColor};
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #00474b;
+  cursor: pointer;
+  :hover {
+    background-color: #9fe8df;
+  }
+  @media (min-width: 1024px) {
+    width: 333px;
   }
 `;
 

@@ -12,8 +12,7 @@ function Compute({
   setinputpercent,
   settip,
   settotal,
-  total,
-  tip,
+  setbuttonColor,
 }) {
   // const [error, seterror] = useState(false);
   useEffect(() => {
@@ -30,7 +29,11 @@ function Compute({
         <InputDiv>
           <h3> Bill</h3>
           <input
-            onChange={(e) => setinputbill(e.target.value)}
+            value={inputbill}
+            onChange={(e) => {
+              setbuttonColor("#26C2AE");
+              setinputbill(e.target.value);
+            }}
             id="bill"
             placeholder="0"
             type="number"
@@ -40,41 +43,70 @@ function Compute({
           <h3> Select Tip %</h3>
 
           <PercentButtonsDiv>
-            <PercentButtons onClick={() => setinputpercent("5")}>
+            <PercentButtons
+              value={inputpercent}
+              onClick={() => {
+                setbuttonColor("#26C2AE");
+                setinputpercent("5");
+              }}
+            >
               5%
             </PercentButtons>
-            <PercentButtons onClick={() => setinputpercent("10")}>
+            <PercentButtons
+              onClick={() => {
+                setbuttonColor("#26C2AE");
+                setinputpercent("10");
+              }}
+            >
               10%
             </PercentButtons>
-            <PercentButtons onClick={() => setinputpercent("15")}>
+            <PercentButtons
+              onClick={() => {
+                setbuttonColor("#26C2AE");
+                setinputpercent("15");
+              }}
+            >
               15%
             </PercentButtons>
-            <PercentButtons onClick={() => setinputpercent("25")}>
+            <PercentButtons
+              onClick={() => {
+                setbuttonColor("#26C2AE");
+                setinputpercent("25");
+              }}
+            >
               25%
             </PercentButtons>
-            <PercentButtons onClick={() => setinputpercent("50")}>
+            <PercentButtons
+              onClick={() => {
+                setbuttonColor("#26C2AE");
+                setinputpercent("50");
+              }}
+            >
               50%
             </PercentButtons>
             <input
               id="custom"
               placeholder="Custom"
-              onChange={(e) => setinputpercent(e.target.value)}
+              onChange={(e) => {
+                setbuttonColor("#26C2AE");
+                setinputpercent(e.target.value);
+              }}
             />
           </PercentButtonsDiv>
         </SelectTipDiv>
         <InputDiv2>
           <h3>
             Number of People
-            <ErrorP set={inputpeople}>can't be zero </ErrorP>
+            <ErrorP inputpeople={inputpeople}>can't be zero </ErrorP>
           </h3>
           <StyledInput
+            value={inputpeople}
             id="numberPeople"
             placeholder="0"
             type="number"
             onChange={(x) => {
+              setbuttonColor("#26C2AE");
               setinputpeople(x.target.value);
-
-              // inputpeople === 0 ? seterror(true) : seterror(false);
             }}
             inputpeople={inputpeople}
           />
